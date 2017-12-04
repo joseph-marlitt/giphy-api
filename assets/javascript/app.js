@@ -1,34 +1,40 @@
 $(document).ready(function() {
-	var gifs = [];
-
+	var gifs = ["Joe", "Sarah", "Evan", "Eric", "Katie", "Tom", "Erin", "Ali", "Ally", "Jordan", "Blake"];
+	
 	function displayGiphyInfo() {
-
+		
 	    var gif = $(this).attr("data-name");
-	   	var queryURL = "https://api.giphy.com/v1/gifs/search?q=funny+cat&api_key=dc6zaTOxFJmzC"; 
-
+	   	var queryURL = "https://api.giphy.com/v1/gifs/search?q= " + gif + "&api_key=dc6zaTOxFJmzC&limit=10;"
+		$("#gif-view").empty();
 	    $.ajax({
 	      url: queryURL,
 	      method: 'GET'
 	    }).done(function(response) {
-	      console.log(response);
+	    	for (var i = 0; i < gifs.length; i++) {
+
+		    	console.log(response);
+				
+		      	$("#gif-view").append("<img src=" + response.data[i].images.fixed_width_downsampled.url + ">");
+		      	$("img").text(response.data[i].rating);
+	 		}
 	    });
       }
       displayGiphyInfo();
 
       function renderButtons() {
 
-        // Deleting the buttons prior to adding new movies
+        // Deleting the buttons prior to adding new gifs
         // (this is necessary otherwise you will have repeat buttons)
         $("#buttons-view").empty();
 
-        // Looping through the array of movies
+        // Looping through the array of gifs
         for (var i = 0; i < gifs.length; i++) {
 
-          // Then dynamicaly generating buttons for each movie in the array
+          // Then dynamicaly generating buttons for each gif in the array
           // This code $("<button>") is all jQuery needs to create the beginning and end tag. (<button></button>)
           var a = $("<button>");
-          // Adding a class of movie to our button
-          a.addClass("movie");
+          // Adding a class of gif to our button
+          a.addClass("gif");
           // Adding a data-attribute
           a.attr("data-name", gifs[i]);
           // Providing the initial button text
@@ -39,23 +45,23 @@ $(document).ready(function() {
       }
 
       // This function handles events where one button is clicked
-      $("#add-movie").on("click", function(event) {
+      $("#add-gif").on("click", function(event) {
         event.preventDefault();
-
+		// var gif = $("#gif-input").empty();
         // This line grabs the input from the textbox
-        var movie = $("#movie-input").val().trim();
+        var gif = $("#gif-input").val().trim();
 
-        // Adding the movie from the textbox to our array
-        gifs.push(movie);
+        // Adding the gif from the textbox to our array
+        gifs.push(gif);
         console.log(gifs)
 
-        // Calling renderButtons which handles the processing of our movie array
+        // Calling renderButtons which handles the processing of our gif array
         renderButtons();
       });
 
-      // Function for displaying the movie info
-      // Using $(document).on instead of $(".movie").on to add event listenersto dynamically generated elements
-      $(document).on("click", ".movie", displayMovieInfo);
+      // Function for displaying the gif info
+      // Using $(document).on instead of $(".gif").on to add event listenersto dynamically generated elements
+      $(document).on("click", ".gif", displayGiphyInfo);
 
       // Calling the renderButtons function to display the intial buttons
       renderButtons();
