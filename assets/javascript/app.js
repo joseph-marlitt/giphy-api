@@ -15,23 +15,35 @@ $(document).ready(function() {
 	    }).done(function(response) {
         var results = response.data;
 	    	$.each(results, function(index, value){
+
+          //Creates the rating and places it in a paragraph
+          var rating = $("<p>").text({
+           "src": results[index].rating
+          })
+
+          //Creates the image variable from the API
           var image = $("<img>").attr({
-            "data-state": "still",
+            "data-state": "animate",
             "src": results[index].images.fixed_width_still.url,
             "data-animate": results[index].images.fixed_width.url,
             "data-still": results[index].images.fixed_width_still.url, 
           })
-        console.log(response)
-           $("#gif-view").prepend(image);
 
-        
+          //Dynamically add the image and rating to the HTML
+          $("#gif-view").prepend(image);
+          $("img").prepend  (rating);
+          
+           
+
+        function animateClick(index, value){
+          $("img").attr("data-state", "animate");
+        }
+
+        // $("img").on("click", animateClick());
         
       })   
     //On 'Click' function for animating the GIFS
-        function animateClick(index, value){
-          $("img").attr("data-animate");
-        }
-          $("img").on("click", animateClick();
+        
 
 	   });
   } 
