@@ -3,22 +3,28 @@ $(document).ready(function() {
 	
 	function displayGiphyInfo() {
 		
+		
 	    var gif = $(this).attr("data-name");
-	   	var queryURL = "https://api.giphy.com/v1/gifs/search?q= " + gif + "&api_key=dc6zaTOxFJmzC&limit=10;"
-		$("#gif-view").empty();
+	   	var queryURL = "https://api.giphy.com/v1/gifs/search?q= " + gif + "&api_key=dc6zaTOxFJmzC&limit=10";
+		
+    $("#gif-view").empty();
 	    $.ajax({
 	      url: queryURL,
 	      method: 'GET'
 	    }).done(function(response) {
-	    	for (var i = 0; i < gifs.length; i++) {
-
-		    	console.log(response);
-				
-		      	$("#gif-view").append("<img src=" + response.data[i].images.fixed_width_downsampled.url + ">");
-		      	$("img").text(response.data[i].rating);
-	 		}
-	    });
-      }
+        var results = response.data;
+	    	$.each(results, function(index, value){
+          var image = $("<img>").attr({
+            "data-state": "still",
+            "src": results[index].images.fixed_width_downsampled.url,
+            "data-animate": results[index].images.fixed_width_downsampled.url,
+            "data-still": results[index].images.fixed_width_downsampled.url, 
+          })
+           $("#gif-view").prepend(image);
+        }) 
+ 		   });
+  } 
+      
       displayGiphyInfo();
 
       function renderButtons() {
