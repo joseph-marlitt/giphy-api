@@ -18,21 +18,23 @@ $(document).ready(function() {
 
           //Creates the rating and places it in a paragraph
           var rating = $("<div>")
-          
-          rating.text(results[index].rating);
           rating.addClass("rated")
+          rating.text(results[index].rating);
+          
           //Creates the image variable from the API
           var image = $("<img>").attr({
-            
             "data-state": "still",
-            "src": results[index].images.fixed_width_still.url, 
-            "data-animate": results[index].images.fixed_width.url,
-            "data-still": results[index].images.fixed_width_still.url, 
+            "src": results[index].images.fixed_height_small_still.url, 
+            "data-animate": results[index].images.fixed_height_small.url,
+            "data-still": results[index].images.fixed_height_small_still.url, 
           })
+          image.text("gifClass")
 
           //Dynamically add the image and rating to the HTML
           $("#gif-view").prepend(image);
-          $("#gif-view").prepend(rating);                    
+          // $("#gif-view").before("Rating: " + rating);
+          $("img").text(rating);
+                              
    
       })   
     //On 'Click' function for animating the GIFS
@@ -76,6 +78,7 @@ $(document).ready(function() {
       var a = $("<button>");
       // Adding a class of gif to our button
       a.addClass("gif");
+      a.addClass("btn btn-primary")
       // Adding a data-attribute
       a.attr("data-name", gifs[i]);
       // Providing the initial button text

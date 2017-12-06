@@ -1,16 +1,58 @@
-html{
+*{
+	color: #444;
 	margin:auto;
-	width: 100%;
 	display: inline-block;
 }
 h1{
 	text-align: center;
-	margin: 10px;
+	/*margin: 10px;*/
 }
 img{
+	margin: 5px 5px 5px 5px;
 	display: inline-block;
+	float: left;
 }
 p{
 	width: 200px;
 	margin:0 10px 10px 10px; 
 }
+button{
+
+}
+.rated{
+	float: left;
+	display: inline-block;
+}
+#buttons-view{
+	text-align: center;
+	margin: 15px;
+}
+/*.row{
+	margin-left: 0px;
+	margin-right: 0px;
+}*/
+#input-div{
+	text-align: center;
+	border-style: solid;
+	background-color: #80ceec;							
+}
+.gif{
+	margin: 5px;
+}
+#gif-view{
+	background-color: #80ceec;
+	border: solid;
+}
+.col-md-12{
+	background-color: #80ceec;
+
+}
+.col-md-9{
+	margin-left: 0px;
+	margin-right:0px;
+}
+.col-md-3{
+	margin-left: 0px;
+	margin-right:0px;
+}
+
