@@ -17,33 +17,42 @@ $(document).ready(function() {
 	    	$.each(results, function(index, value){
 
           //Creates the rating and places it in a paragraph
-          var rating = $("<p>").text({
-           "src": results[index].rating
-          })
+          var rating = $("<p>").text(results[index].rating);
 
           //Creates the image variable from the API
           var image = $("<img>").attr({
-            "data-state": "animate",
-            "src": results[index].images.fixed_width_still.url,
+            
+            "data-state": "still",
+            "src": results[index].images.fixed_width_still.url, 
             "data-animate": results[index].images.fixed_width.url,
             "data-still": results[index].images.fixed_width_still.url, 
           })
 
           //Dynamically add the image and rating to the HTML
           $("#gif-view").prepend(image);
-          $("img").prepend  (rating);
-          
-           
-
-        function animateClick(index, value){
-          $("img").attr("data-state", "animate");
-        }
-
-        // $("img").on("click", animateClick());
-        
+          $("#gif-view").prepend(rating);                    
+   
       })   
     //On 'Click' function for animating the GIFS
-        
+        $("img").click(function(){
+          console.log("click!")
+          //Animate
+          var still = $(this).attr('data-still');
+          var active = $(this).attr('data-animate');
+
+          if ($(this).attr("data-state") === "active"){
+              $(this).attr('src', still);
+              $(this).attr('data-state', 'still');
+            }
+          // ($(this).attr("data-state") === "still")
+          else {
+            $(this).attr('src', active);
+            $(this).attr('data-state', 'active');
+          }
+
+          console.log(still);
+          console.log(active);
+        })
 
 	   });
   } 
@@ -52,7 +61,7 @@ $(document).ready(function() {
 
   //Function for rendering our array into buttons
   function renderButtons() {
-
+    
     // Deleting the buttons prior to adding new gifs
     // (this is necessary otherwise you will have repeat buttons)
     $("#buttons-view").empty();
