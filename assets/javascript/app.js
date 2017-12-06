@@ -17,8 +17,10 @@ $(document).ready(function() {
 	    	$.each(results, function(index, value){
 
           //Creates the rating and places it in a paragraph
-          var rating = $("<p>").text(results[index].rating);
-
+          var rating = $("<div>")
+          
+          rating.text(results[index].rating);
+          rating.addClass("rated")
           //Creates the image variable from the API
           var image = $("<img>").attr({
             
@@ -61,7 +63,7 @@ $(document).ready(function() {
 
   //Function for rendering our array into buttons
   function renderButtons() {
-    
+
     // Deleting the buttons prior to adding new gifs
     // (this is necessary otherwise you will have repeat buttons)
     $("#buttons-view").empty();

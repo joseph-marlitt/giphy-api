@@ -1,0 +1,16 @@
+html{
+	margin:auto;
+	width: 100%;
+	display: inline-block;
+}
+h1{
+	text-align: center;
+	margin: 10px;
+}
+img{
+	display: inline-block;
+}
+p{
+	width: 200px;
+	margin:0 10px 10px 10px; 
+}
