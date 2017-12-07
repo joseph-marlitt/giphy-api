@@ -2,6 +2,7 @@
 	color: #444;
 	margin:auto;
 	display: inline-block;
+	font-family: 'Arvo', serif;
 }
 h1{
 	text-align: center;
@@ -19,19 +20,26 @@ p{
 button{
 
 }
+#webHeader{
+	text-align: center;
+	border: solid;
+	background-color: #80ceec;
+}
 .rated{
 	float: left;
+	margin: 15px;
 	display: inline-block;
 }
 #buttons-view{
 	text-align: center;
 	margin: 15px;
 }
-/*.row{
+.row{
 	margin-left: 0px;
 	margin-right: 0px;
-}*/
+}
 #input-div{
+	padding: 5px;
 	text-align: center;
 	border-style: solid;
 	background-color: #80ceec;							
@@ -42,10 +50,6 @@ button{
 #gif-view{
 	background-color: #80ceec;
 	border: solid;
-}
-.col-md-12{
-	background-color: #80ceec;
-
 }
 .col-md-9{
 	margin-left: 0px;

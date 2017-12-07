@@ -1,5 +1,5 @@
 $(document).ready(function() {
-	var gifs = ["Joe", "Sarah", "Evan", "Eric", "Katie", "Tom", "Erin", "Ali", "Ally", "Jordan", "Blake"];
+	var gifs = ["Joe", "Sarah", "Evan", "Eric", "Katie", "Tom", "Erin", "Ali", "Ally", "Jordan", "Blake", "Brad", "Cory"];
 	
   //Displays 10 gifs that are based on the button clicked.
 	function displayGiphyInfo() {
@@ -17,9 +17,10 @@ $(document).ready(function() {
 	    	$.each(results, function(index, value){
 
           //Creates the rating and places it in a paragraph
-          var rating = $("<div>")
-          rating.addClass("rated")
-          rating.text(results[index].rating);
+          var containingDiv = $("<div>")
+          containingDiv.addClass("rated")
+          
+          var ratingtext = results[index].rating;
           
           //Creates the image variable from the API
           var image = $("<img>").attr({
@@ -28,12 +29,14 @@ $(document).ready(function() {
             "data-animate": results[index].images.fixed_height_small.url,
             "data-still": results[index].images.fixed_height_small_still.url, 
           })
-          image.text("gifClass")
+          containingDiv.append(image)
+          containingDiv.append(ratingtext)
+          
 
           //Dynamically add the image and rating to the HTML
-          $("#gif-view").prepend(image);
+          $("#gif-view").append(containingDiv);
           // $("#gif-view").before("Rating: " + rating);
-          $("img").text(rating);
+          // $("img").text(rating);
                               
    
       })   
